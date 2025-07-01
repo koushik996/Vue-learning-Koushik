@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+          <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <user-profile :user="user"></user-profile>
+    </div>
+
+    <script>
+        const userProfile={
+            props:['user'],
+           template:`
+                    <h1>User Profile</h1>
+                    <div>
+                    <div>{{user.name}}</div>
+                    <div>{{user.email}}</div>
+                    </div>
+                    `
+        }
+        let app=Vue.createApp({
+               data(){
+                return {
+                 user:   {
+                    name:'koushik',
+                    email:'koushik@gmail'
+                }
+            }
+            }
+        })
+        app.component('user-profile',userProfile)
+        .mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+body{
+display: flex;
+    justify-content: center; 
+    align-items: center;     
+    height: 100vh;
+}
+
+</style>
+<body >
+    <div id="app">
+        <section >
+            <h2 class="font-bold mb-2">InProgress</h2>
+            <ul>
+                <li v-for="assignment in InProgressAssignments"></li>
+                <label for="checkbox">
+                    {{assignment.name}}
+                </label>
+            </ul>
+        </section>
+    </div>
+        <section >
+            <h2 class="font-bold mb-2">Completed</h2>
+            <ul>
+                <li v-for="assignment in CompletedAssignments"></li>
+                <label for="checkbox">
+                    {{assignment.name}}
+                </label>
+            </ul>
+        </section>
+<script>
+    let app={
+        data(){
+            return{
+      assignments:
+      [
+        {name:"assignment1"},
+        {name:'assignment2'},
+        {name:'assignment3'}
+    ]}
+}
+};
+Vue.createApp(app).mount('#app')
+</script>
+</body>
+</html>
