@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <script src="./composable.js"></script>
+    <div id="app">
+        <p>{{count}}</p>
+        <button @click="increment">count</button>
+        <p>{{message}}</p>
+        <input v-model="newmsg" placeholder="enter your message">
+        <button @click="newMessage">updatemessage</button>
+    </div>
+    <script>
+        const {ref,createApp}=Vue
+        createApp({
+            setup(){
+        const {count,increment}=uncounted()
+        const {message,updatemessage}=messageBox()
+        const newmsg=ref('')
+        function newMessage(){
+            updatemessage(newmsg.value)
+                newmsg.value=''
+        }
+        return{ count,increment,message,newmsg,newMessage}
+
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

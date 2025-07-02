@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="https://unpkg.com/vue@3"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+       <button @click=" fetchusers">fetchusers</button>
+       <ul v-for="user in users" :key="user.id">
+        <li >{{user.name}}</li>
+        <li>{{user.email}}</li>
+       </ul>
+    </div>
+    <script>
+        const {createApp}=Vue
+        createApp({
+            data(){
+                return{
+                    users:[]
+                }
+            },
+           methods:{
+              fetchusers(){
+                 axios.get('https://jsonplaceholder.typicode.com/users')
+                 .then(Response =>{
+                    this.users=Response.data
+                 })
+                 .catch(error=>{
+                    console.log("error fetching user:",error)
+                 })
+              }
+           }
+        }).mount('#app')
+    </script>
+</body>
+</html>

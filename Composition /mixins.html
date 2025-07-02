@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <p>message:{{message}}</p>
+        <button @click="greet">Greet</button>
+    </div>
+
+    <script>
+    const {createApp}=Vue
+  
+    const mixin={
+        data(){
+        return {
+            message:"hello from mixins"
+        }
+        },
+        methods:{
+          greet(){
+            setTimeout(()=>{
+                  alert("hey mixins")
+            },3000)
+          }
+        }
+    }
+
+    createApp({
+        mixins:[mixin],
+        data(){
+            return{
+                message:"hello from component"
+            }           
+        },
+        methods:{
+            greet(){
+                setTimeout(()=>{
+               alert("hey component")
+                },3000)
+            }
+        }
+    }).mount('#app')
+
+  
+    </script>
+</body>
+</html>

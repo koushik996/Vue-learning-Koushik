@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+            <p>{{count}}</p>
+            <button @click="count++">count</button>
+    </div>
+    <script>
+        const {createApp,ref,watch}=Vue
+        createApp({
+          setup(){
+            let stored=localStorage.getItem('count')
+            let count=ref(stored?JSON.parse(stored):0)
+
+            watch(count,(newVal)=>{
+                localStorage.setItem('count',JSON.stringify(newVal))
+            })
+            return {
+                count
+          }
+        }
+        }).mount('#app')
+    </script>
+</body>
+</html>
