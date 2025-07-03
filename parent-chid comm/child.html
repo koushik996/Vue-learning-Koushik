@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <script src="./parent.js"></script>
+    <div id="app">
+        <p>messageFromChild:{{messageFromChild}}</p>
+     <child-component>
+        :parent-Message="messageToChild"
+        @child-Reply="handleReply"
+    </child-component>
+    </div>
+    <script>
+        const {createApp,ref}=Vue
+        const childcomponent={
+            props:['parentmessage'],
+            emits:['childreply'],
+            template:`
+            <h2>ParentMessage:{{parentmessage}}</h2>
+            <button @click='sendreply'>send reply to parent</button>
+            `,
+         methods:{
+           sendreply(){
+                 this.$emit("childreply","Hello Parent")
+            }
+        }
+    }
+        
+    </script>
+</body>
+</html>
